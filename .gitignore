@@ -1,0 +1,27 @@
+# Python
+*.pyc
+*~
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.sqlite
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# OS X
+.DS_Store
