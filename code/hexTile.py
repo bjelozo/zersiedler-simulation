@@ -71,10 +71,6 @@ class Vertex:
 
     # Method to return if a vertex v1 is adjacent to another v2
     def is_adjacent(self, v1, v2):
-        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (
-                v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
-        if round(dist) == self.edge_length:
-            return True
-
-        return False
+        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
+        return round(dist) == self.edge_length
 
