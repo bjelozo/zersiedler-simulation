@@ -23,16 +23,16 @@ class HexTile:
         self.neighborList = neighbor_list
         self.robber = False
 
-    # Function to update hex neighbors
+    # Method to update hex neighbors
     def update_neighbors(self):
         return None
 
-    # Function to Display Hex Info
+    # Method to Display Hex Info
     def display_hex_info(self):
         print(f'Index: {self.index}; Zone: {self.zone.type}; Description: {self.zone.description}')
         return None
 
-    # Function to display Hex Neighbors
+    # Method to display Hex Neighbors
     def display_hex_neighbors(self):
         print('Neighbors:')
         for neighbor in self.neighborList:
@@ -40,6 +40,11 @@ class HexTile:
 
         return None
 
+    # Method to change zone
+    def change_zone(self, new_zone):
+        """ Change the zoning type of this hex field """
+        self.zone = new_zone
+        print(f'Zone changed to: {new_zone.type} with description: {new_zone.description}')
 
 # Class definition of a Vertex
 class Vertex:
