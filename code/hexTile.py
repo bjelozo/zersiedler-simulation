@@ -29,7 +29,7 @@ class HexTile:
 
     # Function to Display Hex Info
     def display_hex_info(self):
-        print('Index:{}; Hex:{}; Axial Coord:{}'.format(self.index, self.resource, self.coord))
+        print(f'Index: {self.index}; Zone: {self.zone.type}; Description: {self.zone.description}')
         return None
 
     # Function to display Hex Neighbors
