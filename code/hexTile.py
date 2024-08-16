@@ -64,19 +64,17 @@ class Vertex:
 
         self.edge_length = 80  # Specify for hex size
 
-    # Function to get a Vertex by its pixel coordinates
+    # Method to get a Vertex by its pixel coordinates
     def get_vertex_from_pixel(self, coords):
         if self.pixel_coordinates == coords:
             return self
 
-    # Function to return if a vertex v1 is adjacent to another v2
+    # Method to return if a vertex v1 is adjacent to another v2
     def is_adjacent(self, v1, v2):
-        dist = ((v1.pixelCoordinates.x - v2.pixelCoordinates.x) ** 2 + (
-                v1.pixelCoordinates.y - v2.pixelCoordinates.y) ** 2) ** 0.5
+        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (
+                v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
         if round(dist) == self.edge_length:
             return True
 
         return False
 
-# Test Code testHex = hexTile(0, resource('Ore', 8), Point(2,3), [hexTile(2, resource('Wheat', 11), Point(5,6)),
-# hexTile(3, resource('Brick', 11), Point(7,4))]) testHex.displayHexInfo() testHex.displayHexNeighbors()
