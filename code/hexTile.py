@@ -1,11 +1,11 @@
-# Settlers of Catan
+# Zersiedler
 # Vertex and Hextile class implementation
 
 import collections
 from hexLib import *
 
-# Class to implement Catan board Hexagonal Tile
-resource = collections.namedtuple("Resource", ["type", "num"])
+# Define namedtuple for zoning types
+Zone = collections.namedtuple("Zone", ["type", "description"])
 
 
 class HexTile:
