@@ -36,7 +36,7 @@ class HexTile:
     def display_hex_neighbors(self):
         print('Neighbors:')
         for neighbor in self.neighborList:
-            neighbor.displayHexInfo()
+            neighbor.display_hex_info()
 
         return None
 
