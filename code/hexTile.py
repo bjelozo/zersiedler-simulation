@@ -9,14 +9,14 @@ Zone = collections.namedtuple("Zone", ["type", "description"])
 
 
 class HexTile:
-    """Class Definition for Catan Board Hexagonal Tile"""
+    """ Class for a hexagonal field in the game, representing different zoning areas """
 
     # Object Creation - specify the resource, num, center and neighbor list
     # Center is a point in axial coordinates q, r and neighborList is a list of hexTiles
     # hexIndex is a number from 0-18 specifying the Hex's position
-    def __init__(self, hex_index, hex_resource, axial_coords, neighbor_list=None):
+    def __init__(self, hex_index, zone, axial_coords, neighbor_list=None):
         self.hex = axial_hexagonal(axial_coords)  # Hex representation of this tile
-        self.resource = hex_resource
+        self.zone = zone # The zoning type of this tile
         self.coord = axial_coords
         self.pixelCenter = None  # Pixel coordinates of hex as Point(x, y)
         self.index = hex_index
