@@ -16,11 +16,11 @@ class HexTile:
     # hexIndex is a number from 0-18 specifying the Hex's position
     def __init__(self, hex_index, zone, axial_coords, neighbor_list=None):
         self.hex = axial_hexagonal(axial_coords)  # Hex representation of this tile
-        self.zone = zone # The zoning type of this tile
+        self.zone = zone  # The zoning type of this tile
         self.coord = axial_coords
         self.pixelCenter = None  # Pixel coordinates of hex as Point(x, y)
         self.index = hex_index
-        self.neighborList = neighbor_list
+        self.neighborList = neighbor_list if neighbor_list is not None else []
         self.robber = False
 
     # Method to update hex neighbors
@@ -45,6 +45,7 @@ class HexTile:
         """ Change the zoning type of this hex field """
         self.zone = new_zone
         print(f'Zone changed to: {new_zone.type} with description: {new_zone.description}')
+
 
 # Class definition of a Vertex
 class Vertex:
@@ -71,6 +72,6 @@ class Vertex:
 
     # Method to return if a vertex v1 is adjacent to another v2
     def is_adjacent(self, v1, v2):
-        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
+        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (
+                    v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
         return round(dist) == self.edge_length
-
