@@ -1,44 +1,50 @@
-# Settlers of Catan
+# Zersiedler
 # Vertex and Hextile class implementation
 
 import collections
 from hexLib import *
 
-# Class to implement Catan board Hexagonal Tile
-resource = collections.namedtuple("Resource", ["type", "num"])
+# Define namedtuple for zoning types
+Zone = collections.namedtuple("Zone", ["type", "description"])
 
 
 class HexTile:
-    """Class Definition for Catan Board Hexagonal Tile"""
+    """ Class for a hexagonal field in the game, representing different zoning areas """
 
     # Object Creation - specify the resource, num, center and neighbor list
     # Center is a point in axial coordinates q, r and neighborList is a list of hexTiles
     # hexIndex is a number from 0-18 specifying the Hex's position
-    def __init__(self, hex_index, hex_resource, axial_coords, neighbor_list=None):
+    def __init__(self, hex_index, zone, axial_coords, neighbor_list=None):
         self.hex = axial_hexagonal(axial_coords)  # Hex representation of this tile
-        self.resource = hex_resource
+        self.zone = zone  # The zoning type of this tile
         self.coord = axial_coords
         self.pixelCenter = None  # Pixel coordinates of hex as Point(x, y)
         self.index = hex_index
-        self.neighborList = neighbor_list
+        self.neighborList = neighbor_list if neighbor_list is not None else []
         self.robber = False
 
-    # Function to update hex neighbors
+    # Method to update hex neighbors
     def update_neighbors(self):
         return None
 
-    # Function to Display Hex Info
+    # Method to Display Hex Info
     def display_hex_info(self):
-        print('Index:{}; Hex:{}; Axial Coord:{}'.format(self.index, self.resource, self.coord))
+        print(f'Index: {self.index}; Zone: {self.zone.type}; Description: {self.zone.description}')
         return None
 
-    # Function to display Hex Neighbors
+    # Method to display Hex Neighbors
     def display_hex_neighbors(self):
         print('Neighbors:')
         for neighbor in self.neighborList:
-            neighbor.displayHexInfo()
+            neighbor.display_hex_info()
 
         return None
+
+    # Method to change zone
+    def change_zone(self, new_zone):
+        """ Change the zoning type of this hex field """
+        self.zone = new_zone
+        print(f'Zone changed to: {new_zone.type} with description: {new_zone.description}')
 
 
 # Class definition of a Vertex
@@ -59,19 +65,13 @@ class Vertex:
 
         self.edge_length = 80  # Specify for hex size
 
-    # Function to get a Vertex by its pixel coordinates
+    # Method to get a Vertex by its pixel coordinates
     def get_vertex_from_pixel(self, coords):
         if self.pixel_coordinates == coords:
             return self
 
-    # Function to return if a vertex v1 is adjacent to another v2
+    # Method to return if a vertex v1 is adjacent to another v2
     def is_adjacent(self, v1, v2):
-        dist = ((v1.pixelCoordinates.x - v2.pixelCoordinates.x) ** 2 + (
-                v1.pixelCoordinates.y - v2.pixelCoordinates.y) ** 2) ** 0.5
-        if round(dist) == self.edge_length:
-            return True
-
-        return False
-
-# Test Code testHex = hexTile(0, resource('Ore', 8), Point(2,3), [hexTile(2, resource('Wheat', 11), Point(5,6)),
-# hexTile(3, resource('Brick', 11), Point(7,4))]) testHex.displayHexInfo() testHex.displayHexNeighbors()
+        dist = ((v1.pixel_coordinates.x - v2.pixel_coordinates.x) ** 2 + (
+                    v1.pixel_coordinates.y - v2.pixel_coordinates.y) ** 2) ** 0.5
+        return round(dist) == self.edge_length
